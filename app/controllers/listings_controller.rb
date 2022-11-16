@@ -24,6 +24,9 @@ class ListingsController < ApplicationController
   def destroy
   end
 
+  def seller
+  end
+
   private
 
   def listing_params
