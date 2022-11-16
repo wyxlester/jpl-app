@@ -1,3 +1,9 @@
 <h1>Get rich selling stuffs with Jiapalang</h1>
 <br>
 <h3>A new listing can be created here</h3>
+<%= simple_form_for(@listing) do |f| %>
+  <%= f.input :item_name %>
+  <%= f.input :item_description %>
+  <%= f.input :price %>
+  <%= f.submit %>
+<% end %>

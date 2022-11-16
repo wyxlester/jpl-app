@@ -82,3 +82,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "faker"
+
+gem 'pry', '~> 0.13.1'
