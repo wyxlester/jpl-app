@@ -16,6 +16,7 @@ class ListingsController < ApplicationController
     listing = Listing.new(listing_params)
     listing.user = @user.sample
     listing.save
+    redirect_to listing_path(listing)
   end
 
   def edit
@@ -34,7 +35,7 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:item_name, :item_description, :price, :user)
+    params.require(:listing).permit(:item_name, :item_description, :price, :user, :photo)
   end
 
   def all_user

@@ -6,14 +6,14 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-5.times do |i|
-    users = User.new(email:Faker::Internet.email, password: "password")
-    users.save
-    rand(5..10).times do
-        listing = Listing.new(item_name:Faker::Commerce.product_name, item_description:Faker::Commerce.material, price:30)
-        listing.user = users
-        listing.save
+3.times do |i|
+  users = User.new(email:Faker::Internet.email, password: "password")
+  users.save
+  2.times do
+    listing = Listing.new(item_name:Faker::Commerce.product_name, item_description:Faker::Commerce.material, price:30)
+    listing.user = users
+    listing.save
     puts "Created listing"
-    end
+  end
   puts "Generated #{i+1} users"
 end
