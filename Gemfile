@@ -83,6 +83,4 @@ group :test do
   gem "webdrivers"
 end
 
-gem "faker"
-
 gem 'pry', '~> 0.13.1'
