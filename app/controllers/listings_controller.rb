@@ -1,21 +1,21 @@
 class ListingsController < ApplicationController
   def index
-    @lists = Listing.all
+    @listing = Listing.all
   end
 
   def show
-    @list = Listing.find(params[:id])
+    @listing = Listing.find(params[:id])
   end
 
   def new
-    @list = Listing.new
+    @listing = Listing.new
   end
 
   def create
   end
 
   def edit
-    @list = Listing.new
+    @listing = Listing.new
   end
 
   def update
