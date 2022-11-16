@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   def index
-    @listings = Listing.all
+    @listing = Listing.all
   end
 
   def show
@@ -25,6 +25,7 @@ class ListingsController < ApplicationController
   end
 
   private
+
   def listing_params
     params.require(:listing).permit()
   end
