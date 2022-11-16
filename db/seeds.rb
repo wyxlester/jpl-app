@@ -7,6 +7,13 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 5.times do |i|
-    users = User.create(email:Faker::Internet.email, password: "password")
-    puts "Generated #{i+1} users"
+    users = User.new(email:Faker::Internet.email, password: "password")
+    users.save
+    rand(5..10).times do
+        listing = Listing.new(item_name:Faker::Commerce.product_name, item_description:Faker::Commerce.material, price:30)
+        listing.user = users
+        listing.save
+    puts "Created listing"
+    end
+  puts "Generated #{i+1} users"
 end
