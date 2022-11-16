@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :all_user
   def index
-    @listing = Listing.all
+    @listings = Listing.all
   end
 
   def show

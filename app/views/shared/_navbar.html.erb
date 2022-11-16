@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon px-3">
   <%= link_to root_path do %>
-    <%= image_tag "carousell-logo", alt: "alttext", class: "logo" %>
+    <%= cl_image_tag "development/carousell-logo_t9svvu.png", alt: "alttext", class: "logo" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
         <%= link_to "Homepage", root_path, class: "nav-link" %>
       </li>
       <li class="nav-item active">
-        <%= link_to "Listings", listings_path, class: "nav-link" %>
+        <%= link_to "My Listings", listings_path, class: "nav-link" %>
       </li>
       <li class="nav-item active">
         <%= link_to "New Listing", new_listing_path, class: "nav-link" %>
