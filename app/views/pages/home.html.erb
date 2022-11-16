@@ -1,4 +1,4 @@
-<div class="cover mb-4 d-flex align-items-center justify-content-center" style="background-image: url(<%= cl_image_path("development/cover_pic_nhkd3b.png") %>)">
+<div class="cover mb-4 d-flex align-items-center justify-content-center" style="background-image: url(<%= asset_path("cover_pic.png") %>)">
   <div class="text-center">
     <h3 class="typed-js" data-controller="typed-js"><strong>Homepage</strong></h3>
   </div>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="card__buttons">
-        <button class="card__buttons--gray btn">View</button>
+        <button class="card__buttons--gray btn"><%= link_to "view", listings_path(@listing) %></button>
         <button class="card__buttons--primary btn">Offer</button>
       </div>
     </div>
