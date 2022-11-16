@@ -12,8 +12,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @user = User.find(2)
-    raise
+    @user = User.all
   end
 
   def edit
