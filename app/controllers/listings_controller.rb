@@ -12,6 +12,8 @@ class ListingsController < ApplicationController
   end
 
   def create
+    @user = User.find(2)
+    raise
   end
 
   def edit
@@ -30,6 +32,6 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit()
+    params.require(:listing).permit(:item_name, :item_description, :price, :user)
   end
 end
