@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :all_user
-  skip_before_action :authenticate_user!, only: :show
+  skip_before_action :authenticate_user!, only: :index
   def index
     @listings = Listing.all
   end
@@ -33,6 +33,7 @@ class ListingsController < ApplicationController
   end
 
   def seller
+    @listing = Listing.where(user: current_user)
   end
 
   private

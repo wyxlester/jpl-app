@@ -8,14 +8,29 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto">
-      <li class="nav-item active">
-        <%= link_to "Homepage", root_path, class: "nav-link" %>
+      <li class="nav-item active mx-2">
+        <%= link_to "All Categories", listings_path, class: "nav-link" %>
       </li>
-      <li class="nav-item active">
-        <%= link_to "My Listings", listings_path, class: "nav-link" %>
+      <% if user_signed_in? %>
+        <li class="nav-item active mx-2">
+          <%= link_to "My Listings", seller_listing_path(current_user), class: "nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+      <li class="nav-item active mx-2">
+        <%= image_tag "avatar.png", alt: "avatar", class: "avatar" %>
       </li>
-      <li class="nav-item active">
-        <%= link_to "New Listing", new_listing_path, class: "nav-link" %>
+      <li class="nav-item active mx-2">
+        <%= image_tag "like.png", alt: "like", class: "icon" %>
+      </li>
+      <li class="nav-item active mx-2">
+        <%= image_tag "comment.png", alt: "comment", class: "icon" %>
+      </li>
+      <li class="btn btn-sell btn-sm mx-2">
+        <%= link_to "Sell", new_listing_path, class: "nav-link" %>
       </li>
     </ul>
   </div>

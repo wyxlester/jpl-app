@@ -1,25 +1,12 @@
-<div>
-  <h3><%= @listing.item_name %></h3>
-  <%= cl_image_tag(@listing.photo.key) %>
-  <p>Description: <%= @listing.item_description %></p>
-  <p>Price: <%= @listing.price %></p>
-  <p>Listed by: <%= @listing.user.email %></p>
-  <br>
-  <%= link_to "Edit #{@listing.item_name}", edit_listing_path(@listing) ,class: "btn btn-primary" %>
-</div>
-
-<div class="container">
-  <div class="row my-2">
-    <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
-      <div class="p-1 rounded-bottom text-muted d-flex flex-column">
-        <strong><%= @listing.item_name %></strong><br>
-        <div class="listing-photo bg-white rounded shadow h-100">
-          <%= cl_image_tag(@listing.photo.key) %>
-          <small>Description: <%= @listing.item_description %></small><br>
-          <small>Price: <%= @listing.price %></small><br>
-          <small>Listed by: <%= @listing.user.email %></small>
-        </div>
-      </div>
+<div class="container d-flex">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12">
+      <h2 class="text-center"><%= @listing.item_name %></h2><br>
+      <%= cl_image_tag(@listing.photo.key,
+                        class: "listing-photo")%><br>
+      <strong>Description: </strong><%= @listing.item_description %><br>
+      <strong>Price: </strong><%= @listing.price %><br>
+      <strong>Listed by: </strong><%= @listing.user.username %><br>
     </div>
   </div>
 </div>
