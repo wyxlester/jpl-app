@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_action :all_user
+  skip_before_action :authenticate_user!, only: :show
   def index
     @listings = Listing.all
   end
