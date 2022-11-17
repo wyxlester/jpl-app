@@ -3,11 +3,9 @@
     <div class="col-12 col-md-12">
       <div class="bg-white rounded p-3 shadow">
         <h1>Add a new offer</h1>
-            <%= simple_form_for(@offer) do |f| %>
+            <%= simple_form_for [@listing,@offer] do |f| %>
             <%= f.input :item_name %>
-            <%= f.input :item_description %>
-            <%= f.input :price %>
-            <%= f.input :photo %>
+            <%= f.input :offer_price %>
             <%= f.submit class: "btn btn-primary" %>
             <% end %>
       </div>

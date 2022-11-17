@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
 
   def create
     listing = Listing.new(listing_params)
-    listing.user = @user.sample
+    listing.user = current_user
     listing.save
     redirect_to listing_path(listing)
   end
