@@ -21,10 +21,12 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.new
+    @listing = Listing.find(params[:id])
   end
 
   def update
+    @listing = Listing.find(params[:id])
+    @listing.update(listing_params)
   end
 
   def destroy
