@@ -1,1 +1,17 @@
-<h1>Testing</h1>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <div class="bg-white rounded p-3 shadow">
+        <h1>Edit Listings</h1>
+            <%= simple_form_for(@listing) do |f| %>
+            <%= f.input :item_name %>
+            <%= f.input :item_description %>
+            <%= f.input :price %>
+            <%= f.input :photo %>
+            <%= f.submit class: "btn btn-primary" %>
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
