@@ -1,0 +1,19 @@
+
+<br>
+<%# current user %>
+<%= @user.email %>
+<br>
+<h1>Offers by buyers</h1>
+<div class="container">
+<% @offer.each do |o| %>
+  <%# offer name %>
+  <%= o.item_name %>
+  <%# offer price %>
+  <%= o.offer_price %>
+  <%# seller listing %>
+  <%= o.listing.user.email %>
+  <%# buyer %>
+  <%= o.user.email %>
+  <br>
+<% end %>
+</div>

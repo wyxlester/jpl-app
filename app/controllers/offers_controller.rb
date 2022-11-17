@@ -1,5 +1,7 @@
 class OffersController < ApplicationController
   def index
+    @offer = Offer.where(listing_id: params[:listing_id])
+    @user = current_user
   end
 
   def show
