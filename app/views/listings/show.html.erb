@@ -1,12 +1,20 @@
 <div class="container d-flex">
   <div class="row justify-content-center align-items-center">
     <div class="col-12">
-      <h2 class="text-center"><%= @listing.item_name %></h2><br>
-      <%= cl_image_tag(@listing.photo.key,
-                        class: "listing-photo")%><br>
+      <h2 class="text-center pt-5"><%= @listing.item_name %></h2><br>
+      <% if @listing.photo.key? %>
+        <%= cl_image_tag(@listing.photo.key, class: "listing-photo")%><br>
+      <% else %>
+        <img src="https://picsum.photos/500/300/?building" alt="" class="listing-photo">
+      <% end %>
       <strong>Description: </strong><%= @listing.item_description %><br>
       <strong>Price: </strong><%= @listing.price %><br>
       <strong>Listed by: </strong><%= @listing.user.username %><br>
+      <% if @listing.user == current_user %>
+        <button type="button" class="btn btn-info"><%= link_to 'Edit', edit_listing_path(@listing) %></button>
+      <% else %>
+        <button type="button" class="btn btn-success"><%= link_to 'Offer', new_listing_offer_path(@listing) %></button>
+      <% end %>
     </div>
   </div>
 </div>

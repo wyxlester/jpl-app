@@ -8,8 +8,8 @@
       <strong>Description: </strong><%= element.item_description %><br>
       <strong>Price: </strong><%= element.price %><br>
       <strong>Listed by: </strong><%= element.user.username %><br>
-      <button type="button" class="btn btn-success">View Listing</button>
+      <button type="button" class="btn btn-success"><%= link_to "View", listing_path(element.id) %></button>
+      <button type="button" class="btn btn-danger"><%= link_to 'Edit', edit_listing_path(element) %></button>
     </div>
   </div>
 <% end %>
-

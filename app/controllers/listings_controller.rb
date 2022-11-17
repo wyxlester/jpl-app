@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
     listing = Listing.new(listing_params)
     listing.user = current_user
     listing.save
-    redirect_to listing_path(listing)
+    redirect_to seller_listing_path(listing)
   end
 
   def edit
@@ -27,6 +27,7 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
     @listing.update(listing_params)
+    redirect_to seller_listing_path(@listing)
   end
 
   def destroy

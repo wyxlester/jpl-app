@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "listings#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html\
-  resources :listings , only:[:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :listings, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :offers
     member do
       get :seller
     end
+  end
+
+  resources :users, only: :show do
+    resources :listings, only: :index
   end
 
   # Defines the root path route ("/")
