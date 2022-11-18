@@ -13,9 +13,10 @@ class OffersController < ApplicationController
   end
 
   def create
+    offer = Offer.new(offer_params)
     offer.user = current_user
     offer.save
-    redirect_to offer_path(@offer)
+    redirect_to listing_offers_path(offer)
   end
 
   def edit
@@ -38,4 +39,3 @@ class OffersController < ApplicationController
     @user = User.all
   end
 end
-

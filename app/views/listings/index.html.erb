@@ -1,4 +1,4 @@
-<div class="cover mb-4 d-flex align-items-center justify-content-center" style="background-image: url(<%= asset_path('landscape.jpg') %>)">
+<div class="cover mb-4 d-flex align-items-center justify-content-center" style="background-image: url(<%= asset_path('cover_pic.png') %>)">
   <div class="text-center text-white">
     <h3 class="typed-js" data-controller="typed-js"><strong>All listings in the App will be shown here</strong></h3>
   </div>
@@ -8,7 +8,11 @@
 
 <% @listings.each do |listing| %>
   <div class="card" id="list1" onmouseenter="showButton('list1')" onmouseleave="hideButton('list1')">
-    <img src="https://picsum.photos/500/300/?building" alt="" class="card__img">
+    <% if listing.photo.key? %>
+      <%= cl_image_tag(listing.photo.key, class: "card__img")%>
+    <% else %>
+      <img src="https://picsum.photos/500/300/?building" alt="" class="card__img">
+    <% end %>
     <div class="card__body">
       <h3 class="card__title"></i><%= listing.item_name %></h3>
       <div class="card__desc">
@@ -16,9 +20,7 @@
         <span class="card__desc__price"> <span class="card__desc__price--small"></span><%= listing.price %></span>
       </div>
     </div>
-    <div class="card__buttons">
-      <button class="card__buttons--gray btn"><%= link_to 'Edit', edit_listing_path(listing) %></button>
-    </div>
+    <%= link_to "View", listing_path(listing), class: "btn btn-success stretched-link" %>
   </div>
 <% end %>
 </div>
