@@ -1,19 +1,34 @@
 
 <br>
 <%# current user %>
-<%= @user.email %>
+<h6>Current User: <%= @user.username %></h6>
 <br>
 <h1>Offers by buyers</h1>
-<div class="container">
 <% @offer.each do |o| %>
-  <%# offer name %>
   <%= o.item_name %>
+  <div class="container mb-5">
+  <%# offer name %>
+    <h1 class="w-100"><%= o.item_name %></h1>
   <%# offer price %>
-  <%= o.offer_price %>
+    <h2 class="w-50 border border-dark">Offer price: <%= o.offer_price %></h2>
   <%# seller listing %>
-  <%= o.listing.user.email %>
-  <%# buyer %>
-  <%= o.user.email %>
+    <h3 class="w-50 border border-dark">Buyer: <%= o.user.username %></h3>
   <br>
 <% end %>
-</div>
+<br><br>
+
+<h1>Your offer</h1>
+<% @user.offers.each do |o| %>
+  <% if @user.username != o.listing.user.username %>
+    <%= o.item_name %>
+    <div class="container mb-5">
+    <%# offer name %>
+      <h1 class="w-100"><%= o.item_name %></h1>
+    <%# offer price %>
+      <h2 class="w-50 border border-dark">Offer price: <%= o.offer_price %></h2>
+    <%# seller listing %>
+      <h3 class="w-50 border border-dark">Seller: <%= o.listing.user.username %></h3>
+    <br>
+    </div>
+  <% end %>
+<% end %>

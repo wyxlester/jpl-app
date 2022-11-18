@@ -16,7 +16,8 @@ class OffersController < ApplicationController
     offer = Offer.new(offer_params)
     offer.user = current_user
     offer.save
-    redirect_to listing_offers_path(offer)
+
+    redirect_to listing_path(params[:listing_id])
   end
 
   def edit
@@ -30,8 +31,8 @@ class OffersController < ApplicationController
 
   private
 
-  def listing_params
-    params.require(:offer).permit(:item_name, :offer_price, :listing_id, :user_id, :photo)
+  def offer_params
+    params.require(:offer).permit(:offer_price)
   end
 
   def all_user
