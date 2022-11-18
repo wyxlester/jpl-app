@@ -1,10 +1,10 @@
 class OffersController < ApplicationController
   def index
-    @offer = Offer.where(listing_id: params[:listing_id])
-    @user = current_user
+    @offers = Offer.all.where(listing_id: params[:listing_id])
   end
 
   def show
+    @offer = Offer.find_by(listing_id: params[:listing_id])
   end
 
   def new
@@ -13,10 +13,15 @@ class OffersController < ApplicationController
   end
 
   def create
+    listing = Listing.find(params[:listing_id])
     offer = Offer.new(offer_params)
     offer.user = current_user
-    offer.save
-    redirect_to listing_offers_path(offer)
+    offer.listing = listing
+    if offer.save
+      redirect_to listing_offers_path(listing_id: listing.id, id: offer.id)
+    else
+      pp offer.errors.full_messages
+    end
   end
 
   def edit
@@ -28,10 +33,23 @@ class OffersController < ApplicationController
   def destroy
   end
 
+  def sales
+    current_user.listings
+  end
+
+  def status
+    @offer = Offer.find_by(listing_id: params[:listing_id])
+    raise
+  end
+
+  def user_index
+    @listings = Listing.find(current_user.offers.pluck(:listing_id).uniq)
+  end
+
   private
 
-  def listing_params
-    params.require(:offer).permit(:item_name, :offer_price, :listing_id, :user_id, :photo)
+  def offer_params
+    params.require(:offer).permit(:offer_price)
   end
 
   def all_user
