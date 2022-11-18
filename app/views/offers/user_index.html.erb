@@ -1,0 +1,9 @@
+<div class="cover mb-4 d-flex align-items-center justify-content-center">
+  <div class="text-center text-white">
+    <h3 class="typed-js" data-controller="typed-js"><strong>All my posted Offers</strong></h3>
+  </div>
+</div>
+
+<% @listings.each do |listing| %>
+  <%= link_to listing.item_name, listing_offers_path(listing) %><br>
+<% end %>
