@@ -1,34 +1,27 @@
+<div class="cover mb-4 d-flex align-items-center justify-content-center">
+  <div class="text-center text-white">
+    <h3 class="typed-js" data-controller="typed-js"><strong>Posted Offers</strong></h3>
+  </div>
+</div>
 
-<br>
-<%# current user %>
-<h6>Current User: <%= @user.username %></h6>
-<br>
-<h1>Offers by buyers</h1>
-<% @offer.each do |o| %>
-  <%= o.item_name %>
-  <div class="container mb-5">
-  <%# offer name %>
-    <h1 class="w-100"><%= o.item_name %></h1>
-  <%# offer price %>
-    <h2 class="w-50 border border-dark">Offer price: <%= o.offer_price %></h2>
-  <%# seller listing %>
-    <h3 class="w-50 border border-dark">Buyer: <%= o.user.username %></h3>
-  <br>
-<% end %>
-<br><br>
-
-<h1>Your offer</h1>
-<% @user.offers.each do |o| %>
-  <% if @user.username != o.listing.user.username %>
-    <%= o.item_name %>
-    <div class="container mb-5">
-    <%# offer name %>
-      <h1 class="w-100"><%= o.item_name %></h1>
-    <%# offer price %>
-      <h2 class="w-50 border border-dark">Offer price: <%= o.offer_price %></h2>
-    <%# seller listing %>
-      <h3 class="w-50 border border-dark">Seller: <%= o.listing.user.username %></h3>
-    <br>
+<div class="container">
+  <% @offers.each do |offer| %>
+    <div class="card" id="list1" onmouseenter="showButton('list1')" onmouseleave="hideButton('list1')">
+      <% if offer.listing.photo.key? %>
+        <%= cl_image_tag(offer.photo.key, class: "card__img")%>
+      <% else %>
+        <img src="https://picsum.photos/500/300/?building" alt="" class="card__img">
+      <% end %>
+      <div class="card__body">
+        <h3 class="card__title"></i><%= offer.listing.item_name %></h3>
+        <div class="card__desc">
+          <span class="card__desc__room"></i><u>Description:</u> <%= offer.listing.item_description %></span><br>
+          <span class="card__desc__room"> <span class="card__desc__price--small"></span><u>Asking Price:</u> $<%= offer.listing.price %></span><br>
+          <span class="card__desc__room"> <span class="card__desc__price--small"></span><u>My Offer Price:</u> $<%= offer.offer_price %></span><br>
+        </div>
+      </div>
+      <%= link_to "View", listing_path(offer.listing), class: "btn btn-success stretched-link" %>
     </div>
   <% end %>
-<% end %>
+</div>
+

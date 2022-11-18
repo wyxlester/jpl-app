@@ -1,15 +1,30 @@
-<h1>My Listings</h1>
-<br>
-<% @listing.each do |element| %>
-  <div class="row justify-content-center align-items-center">
-    <div class="col-12 my-2">
-      <h3><%= element.item_name %></h3><br>
-      <%= cl_image_tag(element.photo.key, class: "listing-photos") %><br>
-      <strong>Description: </strong><%= element.item_description %><br>
-      <strong>Price: </strong><%= element.price %><br>
-      <strong>Listed by: </strong><%= element.user.username %><br>
-      <button type="button" class="btn btn-success"><%= link_to "View", listing_path(element.id) %></button>
-      <button type="button" class="btn btn-danger"><%= link_to 'Edit', edit_listing_path(element) %></button>
-    </div>
+<div class="cover mb-4 d-flex align-items-center justify-content-center">
+  <div class="text-center text-white">
+    <h3 class="typed-js" data-controller="typed-js"><strong>All my Listings</strong></h3>
   </div>
-<% end %>
+</div>
+
+<div class="container">
+  <% @listing.each do |element| %>
+    <div class="card" id="list1" onmouseenter="showButton('list1')" onmouseleave="hideButton('list1')">
+      <% if element.photo.key? %>
+        <%= cl_image_tag(element.photo.key, class: "card__img")%>
+      <% else %>
+        <img src="https://picsum.photos/500/300/?building" alt="" class="card__img">
+      <% end %>
+      <div class="card__body">
+        <h3 class="card__title"></i><%= element.item_name %></h3>
+        <div class="card__desc">
+          <span class="card__desc__room"></i><u>Description:</u> <%= element.item_description %></span><br>
+          <span class="card__desc__room"> <span class="card__desc__price--small"></span><u>Price:</u> $<%= element.price %></span><br>
+        </div>
+        <button type="button" class="btn btn-info"><%= link_to "View", listing_path(element.id) %></button>
+        <button type="button" class="btn btn-danger"><%= link_to 'Edit', edit_listing_path(element) %></button>
+        <% if element.offers.any? %>
+          <button type="button" class="btn btn-success"><%= link_to 'Incoming Offers', listing_offer_path(element) %></button>
+        <% else %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
