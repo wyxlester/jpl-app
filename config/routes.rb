@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "listings#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html\
-  resources :listings, only:[:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :listings, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :offers
     member do
       get :seller
