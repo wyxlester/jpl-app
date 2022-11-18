@@ -11,9 +11,9 @@
       <strong>Price: </strong><%= @listing.price %><br>
       <strong>Listed by: </strong><%= @listing.user.username %><br>
       <% if @listing.user == current_user %>
-        <button type="button" class="btn btn-info"><%= link_to 'Edit', edit_listing_path(@listing) %></button>
+        <button type="button" class="btn btn-whiteview"><%= link_to 'Edit', edit_listing_path(@listing) %></button>
       <% else %>
-        <button type="button" class="btn btn-success"><%= link_to 'Offer', new_listing_offer_path(@listing) %></button>
+        <button type="button" class="btn btn-red"><%= link_to 'Offer', new_listing_offer_path(@listing) %></button>
       <% end %>
     </div>
   </div>

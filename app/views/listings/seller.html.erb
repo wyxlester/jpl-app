@@ -1,6 +1,6 @@
 <div class="cover mb-4 d-flex align-items-center justify-content-center">
   <div class="text-center text-white">
-    <h3 class="typed-js" data-controller="typed-js"><strong>All my Listings</strong></h3>
+    <h3 class="typed-js" data-controller="typed-js"><strong>As a User I can view all my Listings here</strong></h3>
   </div>
 </div>
 
@@ -18,10 +18,10 @@
           <span class="card__desc__room"></i><u>Description:</u> <%= element.item_description %></span><br>
           <span class="card__desc__room"> <span class="card__desc__price--small"></span><u>Price:</u> $<%= element.price %></span><br>
         </div>
-        <button type="button" class="btn btn-info"><%= link_to "View", listing_path(element.id) %></button>
-        <button type="button" class="btn btn-danger"><%= link_to 'Edit', edit_listing_path(element) %></button>
+        <button type="button" class="btn btn-red"><%= link_to "View", listing_path(element.id) %></button>
+        <button type="button" class="btn btn-whiteview"><%= link_to 'Edit', edit_listing_path(element) %></button>
         <% if element.offers.any? %>
-          <button type="button" class="btn btn-success"><%= link_to 'Incoming Offers', listing_offer_path(element) %></button>
+          <button type="button" class="btn btn-success"><%= link_to 'Status', listing_offer_path(element) %></button>
         <% else %>
         <% end %>
       </div>
