@@ -8,3 +8,21 @@
 @import "navbar";
 @import "listing";
 @import "icon";
+
+button a {
+  color: #282626;
+  text-decoration: none;
+  background: #ff2636;
+}
+
+button a:hover {
+  text-decoration: none;
+  background-color: #ff2634a9;
+  color: #ffffff;
+}
+
+
+// li a {
+//   color: white !important;
+//   text-decoration: none !important;
+// }
