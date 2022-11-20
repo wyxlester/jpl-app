@@ -7,6 +7,14 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @listing.offers.each do |offer|
+      if offer.user == current_user
+        @offered = true
+        @offered_price = offer.offer_price
+      else
+        @offered = false
+      end
+    end
   end
 
   def new

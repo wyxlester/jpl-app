@@ -1,27 +1,27 @@
-<div class="cover mb-4 d-flex align-items-center justify-content-center">
-  <div class="text-center text-white">
-    <h3 class="typed-js" data-controller="typed-js"><strong>Posted Offers</strong></h3>
-  </div>
-</div>
-
-<div class="container">
-  <% @offers.each do |offer| %>
-    <div class="card" id="list1" onmouseenter="showButton('list1')" onmouseleave="hideButton('list1')">
-      <% if offer.listing.photo.key? %>
-        <%= cl_image_tag(offer.photo.key, class: "card__img")%>
+<div class="container d-flex">
+  <div class="row justify-content-center align-items-center">
+  <h2 class="text-center pt-5">Received Offers</h2>
+    <div class="col">
+      <h3 class="pt-2"><%= @offers.first.listing.item_name %></h3><br>
+      <% if @offers.first.listing.photo.key? %>
+        <%= cl_image_tag(@offers.first.listing.photo.key, class: "listing-photo")%><br>
       <% else %>
-        <img src="https://picsum.photos/500/300/?building" alt="" class="card__img">
+        <img src="https://picsum.photos/500/300/?building" alt="" class="listing-photo"><br>
       <% end %>
       <div class="card__body">
-        <h3 class="card__title"></i><%= offer.listing.item_name %></h3>
-        <div class="card__desc">
-          <span class="card__desc__room"></i><u>Description:</u> <%= offer.listing.item_description %></span><br>
-          <span class="card__desc__room"> <span class="card__desc__price--small"></span><u>Asking Price:</u> $<%= offer.listing.price %></span><br>
-          <span class="card__desc__room"> <span class="card__desc__price--small"></span><u>My Offer Price:</u> $<%= offer.offer_price %></span><br>
+        <div class="card__desc__room">
+          <span><%= @offers.first.listing.item_description %></span>
+          <span class="card__desc__price"><span class="card__desc__price--small">$<%= @offers.first.listing.price %></span></span>
         </div>
       </div>
-      <%= link_to "View", listing_path(offer.listing), class: "btn btn-success stretched-link" %>
     </div>
-  <% end %>
-</div>
 
+    <div class="col">
+      <h4><%= @offers.size %> Offers</h4><br>
+      <ol>
+      <% @offers.each_with_index do |offer, index| %>
+        <li><%= offer.user.username %> offered $<%= offer.offer_price %> <%= link_to "Accept", status_path(offer.user) %></li><br>
+      <% end %>
+    </div>
+  </div>
+</div>

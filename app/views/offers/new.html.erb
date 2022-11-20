@@ -5,7 +5,7 @@
         <h1>Make an offer</h1>
             <%= simple_form_for [@listing, @offer] do |f| %>
             <%= f.input :offer_price, placeholder: "Listed Price: #{@listing.price}" %>
-            <%= f.submit class: "btn btn-success" %>
+            <%= f.submit class: "btn btn-red" %>
             <% end %>
       </div>
     </div>

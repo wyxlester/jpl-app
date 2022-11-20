@@ -16,8 +16,8 @@
     <div class="card__body">
       <h3 class="card__title"></i><%= listing.item_name %></h3>
       <div class="card__desc">
-        <span class="card__desc__room"></i><%= listing.item_description %></span>
-        <span class="card__desc__price"> <span class="card__desc__price--small"></span><%= listing.price %></span>
+        <span class="card__desc__room"></i>Listed by: <%= listing.user.username %></span>
+        <span class="card__desc__price"> <span class="card__desc__price--small"></span>$<%= listing.price %></span>
       </div>
     </div>
     <%= link_to "View", listing_path(listing), class: "btn btn-whiteview stretched-link" %>

@@ -1,9 +1,27 @@
-<div class="cover mb-4 d-flex align-items-center justify-content-center">
-  <div class="text-center text-white">
-    <h3 class="typed-js" data-controller="typed-js"><strong>All my posted Offers</strong></h3>
-  </div>
-</div>
+<h2 class="text-center pt-5">Offers sent by me</h2>
 
-<% @listings.each do |listing| %>
-  <%= link_to listing.item_name, listing_offers_path(listing) %><br>
-<% end %>
+<div class="container">
+  <% @listings.each do |listing| %>
+    <div class="card" id="list1" onmouseenter="showButton('list1')" onmouseleave="hideButton('list1')">
+      <% if listing.photo.key? %>
+        <%= cl_image_tag(listing.photo.key, class: "card__img")%>
+      <% else %>
+        <img src="https://picsum.photos/500/300/?building" alt="" class="card__img">
+      <% end %>
+      <div class="card__body">
+        <h3 class="card__title"></i><%= listing.item_name %></h3>
+        <div class="card__desc">
+          <span class="card__desc__room"> <span class="card__desc__price--small"></span>Listed Price: $<%= listing.price %></span><br>
+
+          <% listing.offers.each do |offer| %>
+            <% if offer.user == current_user %>
+              <span class="card__desc__room"></i>Your Offered Price: $<%= offer.offer_price %></span><br>
+              <span class="card__desc__room"></i>Offer Status: <%=  %></span><br>
+            <% end %>
+          <% end %>
+        </div>
+        <%= link_to "View", listing_path(listing), class: "btn btn-red stretched-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>

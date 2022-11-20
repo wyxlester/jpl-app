@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   def index
     @offers = Offer.all.where(listing_id: params[:listing_id])
+    @accept = false
   end
 
   def show
@@ -18,7 +19,7 @@ class OffersController < ApplicationController
     offer.user = current_user
     offer.listing = listing
     if offer.save
-      redirect_to listing_offers_path(listing_id: listing.id, id: offer.id)
+      redirect_to user_offers_path(listing_id: listing.id, user_id: current_user)
     else
       pp offer.errors.full_messages
     end
@@ -39,7 +40,6 @@ class OffersController < ApplicationController
 
   def status
     @offer = Offer.find_by(listing_id: params[:listing_id])
-    raise
   end
 
   def user_index
