@@ -11,12 +11,17 @@
       <div class="card__body">
         <h3 class="card__title"></i><%= listing.item_name %></h3>
         <div class="card__desc">
-          <span class="card__desc__room"> <span class="card__desc__price--small"></span>Listed Price: $<%= listing.price %></span><br>
-
           <% listing.offers.each do |offer| %>
             <% if offer.user == current_user %>
               <span class="card__desc__room"></i>Your Offered Price: $<%= offer.offer_price %></span><br>
-              <span class="card__desc__room"></i>Offer Status: <%=  %></span><br>
+              <span class="card__desc__room"></i>Offer Status:
+              <% if offer.status == "accepted" %>
+                <span class="accepted"><%= offer.status %></span></span><br>
+              <% elsif offer.status == "pending" %>
+                <span class="pending"><%= offer.status %></span></span><br>
+              <% elsif offer.status == "rejected" %>
+                <span class="rejected"><%= offer.status %></span></span><br>
+              <% end %>
             <% end %>
           <% end %>
         </div>

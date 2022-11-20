@@ -15,11 +15,5 @@ Rails.application.routes.draw do
     get :offers, to: "offers#user_index"
   end
 
-  get "sales", to: "offers#sales"
   get "status", to: "offers#status"
-
-
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

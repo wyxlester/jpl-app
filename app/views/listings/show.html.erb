@@ -18,6 +18,17 @@
       <% else %>
         <%= link_to 'Offer', new_listing_offer_path(@listing), class: "btn btn-red" %>
       <% end %>
+
+      <span>Offer Status:
+      <% @listing.offers.each do |offer| %>
+        <% if offer.status == "accepted" %>
+          <span class="accepted"><%= offer.status %></span></span><br>
+        <% elsif offer.status == "pending" %>
+          <span class="pending"><%= offer.status %></span></span><br>
+        <% elsif offer.status == "rejected" %>
+          <span class="rejected"><%= offer.status %></span></span><br>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

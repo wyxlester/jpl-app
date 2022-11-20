@@ -42,7 +42,7 @@ class ListingsController < ApplicationController
   end
 
   def seller
-    @listing = Listing.where(user: current_user)
+    @listings = Listing.where(user: current_user)
   end
 
   private

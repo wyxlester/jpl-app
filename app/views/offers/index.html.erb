@@ -20,7 +20,21 @@
       <h4><%= @offers.size %> Offers</h4><br>
       <ol>
       <% @offers.each_with_index do |offer, index| %>
-        <li><%= offer.user.username %> offered $<%= offer.offer_price %> <%= link_to "Accept", status_path(offer.user) %></li><br>
+        <li><%= offer.user.username %> offered $<%= offer.offer_price %>. Status:
+        <% if offer.status == "accepted" %>
+          <span class="accepted"><%= offer.status %></span></span>
+        <% elsif offer.status == "pending" %>
+          <span class="pending"><%= offer.status %></span></span>
+        <% elsif offer.status == "rejected" %>
+          <span class="rejected"><%= offer.status %></span></span>
+        <% end %>
+        <% if offer.status == "pending" %>
+          <%= simple_form_for offer, url: listing_offer_path(@listing, offer) do |f| %>
+              <%= f.hidden_field :status, :value => "accepted" %>
+              <%= f.submit "Accept", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </li><br>
       <% end %>
     </div>
   </div>
