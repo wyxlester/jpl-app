@@ -12,7 +12,7 @@
       <strong>Listed by: </strong><%= @listing.user.username %><br>
       <% if @listing.user == current_user %>
         This is your listed product.<br>
-        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green" %>
+        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green" %>  <%= link_to "View Offers", listing_offers_path(@listing) %>
       <% elsif @offered == true %>
         You offered $<%= @offered_price %>, pending review.
       <% else %>
