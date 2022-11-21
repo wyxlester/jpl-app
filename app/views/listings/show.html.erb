@@ -1,40 +1,46 @@
 <div class="container d-flex">
-  <div class="row justify-content-center align-items-center">
+  <div class="row justify-content-center align-items-center border border-dark bg-light text-dark my-5 shadow-lg">
     <div class="col-12">
       <h2 class="text-center pt-5"><%= @listing.item_name %></h2><br>
       <% if @listing.photo.key? %>
-        <%= cl_image_tag(@listing.photo.key, class: "listing-photo")%><br>
+        <%= cl_image_tag(@listing.photo.key, class: "listing-photo")%>
       <% else %>
         <img src="https://picsum.photos/500/300/?building" alt="" class="listing-photo">
       <% end %>
-      <strong>Description: </strong><%= @listing.item_description %><br>
-      <strong>Price: $</strong><%= @listing.price %><br>
-      <strong>Listed by: </strong><%= @listing.user.username %><br>
-      <% if @listing.user == current_user %><i>
-        *This is your listed product.</i><br>
-        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green" %>
+      <hr>
+      <div>
+      <div class="d-flex flex-column">
+        <div class="p-2"><strong>Description: </strong><%= @listing.item_description %></div>
+        <div class="p-2"><strong>Price: $</strong><%= @listing.price %></div>
+        <div class="p-2"><strong>Listed by: </strong><%= @listing.user.username %></div>
+      <% if @listing.user == current_user %>
+        <div class="p-2 mb-2">
+        <p><i>*This is your listed product.</i></p>
+        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green w-100" %>
+        </div>
         <% if @listing.offers.any? %>
-          <%= link_to "View Offers", listing_offers_path(@listing) %>
+          <div class="p-2 mb-2"><%= link_to "View Offers", listing_offers_path(@listing) %></div>
         <% end %>
       <% elsif @offered == true %>
-        You offered $<%= @offered_price %>, pending review.
+        <div class="p-2 text-center">You offered <strong>$<%= @offered_price %></strong>, pending review.</div>
       <% else %>
-        <%= link_to 'Offer', new_listing_offer_path(@listing), class: "btn btn-red" %>
+        <%= link_to 'Offer', new_listing_offer_path(@listing), class: "btn btn-red mb-2" %><br>
       <% end %>
 
       <% if @listing.offers.any? %>
         <% @listing.offers.each do |offer| %>
           <% if offer.user == current_user %>
             <% if offer.status == "accepted" %>
-              <span class="accepted">Status: <%= offer.status %></span></span><br>
+              <div class="p-2 text-center bg-success text-white mb-2"><span>Status: <%= offer.status %></span></div>
             <% elsif offer.status == "pending" %>
-              <span class="pending">Status: <%= offer.status %></span></span><br>
+              <div class="p-2 bg-secondary text-white mb-2"><span>Status: <%= offer.status %></span></div>
             <% elsif offer.status == "rejected" %>
-              <span class="rejected">Status: <%= offer.status %></span></span><br>
+              <div class="p-2 bg-danger text-white mb-2"><span>Status: <%= offer.status %></span></div>
             <% end %>
           <% end %>
         <% end %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
