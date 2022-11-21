@@ -16,10 +16,10 @@
       <% if @listing.user == current_user %>
         <div class="p-2 mb-2">
         <p><i>*This is your listed product.</i></p>
-        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green w-100" %>
+        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-red w-100" %>
         </div>
         <% if @listing.offers.any? %>
-          <div class="p-2 mb-2"><%= link_to "View Offers", listing_offers_path(@listing) %></div>
+          <div class="p-2 mb-2"><%= link_to "View Offers", listing_offers_path(@listing), class: "btn btn-whiteview w-100" %></div>
         <% end %>
       <% elsif @offered == true %>
         <div class="p-2 text-center">You offered <strong>$<%= @offered_price %></strong>, pending review.</div>

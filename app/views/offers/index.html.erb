@@ -16,8 +16,8 @@
       </div>
     </div>
 
-    <div class="col">
-      <h4><%= @offers.size %> Offers</h4><br>
+    <div class="col p-3 mb-2 bg-light text-dark">
+      <h4 class="mt-2"><%= @offers.size %> offers</h4><br>
       <ol>
       <% @offers.each_with_index do |offer, index| %>
         <li><%= offer.user.username %> offered $<%= offer.offer_price %>. Status:
