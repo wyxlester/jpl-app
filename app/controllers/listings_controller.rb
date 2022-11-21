@@ -2,9 +2,14 @@ class ListingsController < ApplicationController
   before_action :all_user
   skip_before_action :authenticate_user!, only: :index
   def index
-    @listings = Listing.all
+    if params[:query].present?
+      sql_query = "item_name ILIKE :query OR item_description ILIKE :query"
+      @listings = Listing.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @listings = Listing.all
+    end
   end
-
+  
   def show
     @listing = Listing.find(params[:id])
     @listing.offers.each do |offer|
