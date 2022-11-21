@@ -9,6 +9,10 @@ body {
   background: $background;
 }
 
+li.btn a {
+  color: white !important;
+}
+
 button {
   background: #f5f5f5;
   padding: 15px 20px;
