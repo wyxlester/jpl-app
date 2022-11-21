@@ -8,7 +8,7 @@
       <% else %>
         <img src="https://picsum.photos/500/300/?building" alt="" class="listing-photo"><br>
       <% end %>
-      <div class="card__body">
+      <div class="card__body">x
         <div class="card__desc__room">
           <span><%= @offers.first.listing.item_description %></span>
           <span class="card__desc__price"><span class="card__desc__price--small">$<%= @offers.first.listing.price %></span></span>
@@ -31,7 +31,7 @@
         <% if offer.status == "pending" %>
           <%= simple_form_for offer, url: listing_offer_path(@listing, offer) do |f| %>
               <%= f.hidden_field :status, :value => "accepted" %>
-              <%= f.submit "Accept", class: "btn btn-primary" %>
+              <%= f.submit "Accept", class: "btn btn-green" %>
             <% end %>
           <% end %>
         </li><br>

@@ -10,23 +10,29 @@
       <strong>Description: </strong><%= @listing.item_description %><br>
       <strong>Price: $</strong><%= @listing.price %><br>
       <strong>Listed by: </strong><%= @listing.user.username %><br>
-      <% if @listing.user == current_user %>
-        This is your listed product.<br>
-        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green" %>  <%= link_to "View Offers", listing_offers_path(@listing) %>
+      <% if @listing.user == current_user %><i>
+        *This is your listed product.</i><br>
+        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green" %>
+        <% if @listing.offers.any? %>
+          <%= link_to "View Offers", listing_offers_path(@listing) %>
+        <% end %>
       <% elsif @offered == true %>
         You offered $<%= @offered_price %>, pending review.
       <% else %>
         <%= link_to 'Offer', new_listing_offer_path(@listing), class: "btn btn-red" %>
       <% end %>
 
-      <span>Offer Status:
-      <% @listing.offers.each do |offer| %>
-        <% if offer.status == "accepted" %>
-          <span class="accepted"><%= offer.status %></span></span><br>
-        <% elsif offer.status == "pending" %>
-          <span class="pending"><%= offer.status %></span></span><br>
-        <% elsif offer.status == "rejected" %>
-          <span class="rejected"><%= offer.status %></span></span><br>
+      <% if @listing.offers.any? %>
+        <% @listing.offers.each do |offer| %>
+          <% if offer.user == current_user %>
+            <% if offer.status == "accepted" %>
+              <span class="accepted">Status: <%= offer.status %></span></span><br>
+            <% elsif offer.status == "pending" %>
+              <span class="pending">Status: <%= offer.status %></span></span><br>
+            <% elsif offer.status == "rejected" %>
+              <span class="rejected">Status: <%= offer.status %></span></span><br>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
