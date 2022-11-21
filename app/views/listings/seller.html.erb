@@ -15,6 +15,11 @@
           <span class="card__desc__room"></i>
           <% if listing.offers.any? %>
             <%= link_to "View Offers(#{listing.offers.size})", listing_offers_path(listing) %>
+            <% listing.offers.each do |offer| %>
+              <% if offer.status == "accepted" %>
+                <i class="accepted">Sold!</i>
+              <% end %>
+            <% end %>
           <% else %>
             No Offer Yet
           <% end %>
@@ -22,13 +27,6 @@
           <span class="card__desc__price"><span class="card__desc__price--small"></span>$<%= listing.price %></span><br>
         </div>
         <%= link_to "View Listing", listing_path(listing.id), class: "btn btn-red mt-3 w-100" %>
-
-        <% listing.offers.each do |offer| %>
-          <% if offer.status == "accepted" %>
-            <p><i>*Offer accepted, listing sold.</i></p>
-          <% end %>
-        <% end %>
-
       </div>
     </div>
   <% end %>
