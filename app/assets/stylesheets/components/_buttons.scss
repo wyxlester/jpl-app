@@ -40,6 +40,20 @@
   color: #ffffff;
 }
 
+.btn-redstretch {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #ff2636;
+  transition: background 0.3s ease;
+  width: 100%
+}
+
+.btn-redstretch:hover {
+  background-color: #ff2634a9;
+  color: #ffffff;
+}
+
 .btn-white {
   color: #ff2636;
   padding: 8px 24px;
