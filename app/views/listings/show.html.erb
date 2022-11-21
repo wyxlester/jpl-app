@@ -8,12 +8,26 @@
         <img src="https://picsum.photos/500/300/?building" alt="" class="listing-photo">
       <% end %>
       <strong>Description: </strong><%= @listing.item_description %><br>
-      <strong>Price: </strong><%= @listing.price %><br>
+      <strong>Price: $</strong><%= @listing.price %><br>
       <strong>Listed by: </strong><%= @listing.user.username %><br>
       <% if @listing.user == current_user %>
-        <button type="button" class="btn btn-whiteview"><%= link_to 'Edit', edit_listing_path(@listing) %></button>
+        This is your listed product.<br>
+        <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-green" %>  <%= link_to "View Offers", listing_offers_path(@listing) %>
+      <% elsif @offered == true %>
+        You offered $<%= @offered_price %>, pending review.
       <% else %>
-        <button type="button" class="btn btn-red"><%= link_to 'Offer', new_listing_offer_path(@listing) %></button>
+        <%= link_to 'Offer', new_listing_offer_path(@listing), class: "btn btn-red" %>
+      <% end %>
+
+      <span>Offer Status:
+      <% @listing.offers.each do |offer| %>
+        <% if offer.status == "accepted" %>
+          <span class="accepted"><%= offer.status %></span></span><br>
+        <% elsif offer.status == "pending" %>
+          <span class="pending"><%= offer.status %></span></span><br>
+        <% elsif offer.status == "rejected" %>
+          <span class="rejected"><%= offer.status %></span></span><br>
+        <% end %>
       <% end %>
     </div>
   </div>

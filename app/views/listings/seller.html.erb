@@ -1,29 +1,34 @@
-<div class="cover mb-4 d-flex align-items-center justify-content-center">
-  <div class="text-center text-white">
-    <h3 class="typed-js" data-controller="typed-js"><strong>As a User I can view all my Listings here</strong></h3>
-  </div>
-</div>
+
+<h2 class="text-center pt-5">All my listings</h2>
 
 <div class="container">
-  <% @listing.each do |element| %>
+  <% @listings.each do |listing| %>
     <div class="card" id="list1" onmouseenter="showButton('list1')" onmouseleave="hideButton('list1')">
-      <% if element.photo.key? %>
-        <%= cl_image_tag(element.photo.key, class: "card__img")%>
+      <% if listing.photo.key? %>
+        <%= cl_image_tag(listing.photo.key, class: "card__img")%>
       <% else %>
         <img src="https://picsum.photos/500/300/?building" alt="" class="card__img">
       <% end %>
       <div class="card__body">
-        <h3 class="card__title"></i><%= element.item_name %></h3>
+        <h3 class="card__title"></i><%= listing.item_name %></h3>
         <div class="card__desc">
-          <span class="card__desc__room"></i><u>Description:</u> <%= element.item_description %></span><br>
-          <span class="card__desc__room"> <span class="card__desc__price--small"></span><u>Price:</u> $<%= element.price %></span><br>
+          <span class="card__desc__room"></i>
+          <% if listing.offers.any? %>
+            <%= link_to "View Offers(#{listing.offers.size})", listing_offers_path(listing) %>
+          <% else %>
+            No Offer Yet
+          <% end %>
+          </span>
+          <span class="card__desc__price"><span class="card__desc__price--small"></span>$<%= listing.price %></span><br>
         </div>
-        <button type="button" class="btn btn-red"><%= link_to "View", listing_path(element.id) %></button>
-        <button type="button" class="btn btn-whiteview"><%= link_to 'Edit', edit_listing_path(element) %></button>
-        <% if element.offers.any? %>
-          <button type="button" class="btn btn-success"><%= link_to 'Status', listing_offer_path(element) %></button>
-        <% else %>
+        <%= link_to "View Listing", listing_path(listing.id), class: "btn btn-red mt-3" %>
+
+        <% listing.offers.each do |offer| %>
+          <% if offer.status == "accepted" %>
+            <p><i>*Offer accepted, listing sold.</i></p>
+          <% end %>
         <% end %>
+
       </div>
     </div>
   <% end %>

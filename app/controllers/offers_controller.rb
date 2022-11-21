@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   def index
+    @listing = Listing.find(params[:listing_id])
     @offers = Offer.all.where(listing_id: params[:listing_id])
   end
 
@@ -17,10 +18,11 @@ class OffersController < ApplicationController
     offer = Offer.new(offer_params)
     offer.user = current_user
     offer.listing = listing
+    offer.status = "pending"
     if offer.save
-      redirect_to listing_offers_path(listing_id: listing.id, id: offer.id)
+      redirect_to user_offers_path(listing_id: listing.id, user_id: current_user)
     else
-      pp offer.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -28,6 +30,18 @@ class OffersController < ApplicationController
   end
 
   def update
+    @listing = Listing.find(params[:listing_id])
+    @offer = Offer.find(params[:id])
+    @offer.status = params[:offer][:status]
+    if @offer.save
+      @listing.offers.map do |offer|
+        unless offer.id == @offer.id
+          offer.status = "rejected"
+          offer.save!
+        end
+      end
+    end
+    redirect_to listing_offers_path(@listing)
   end
 
   def destroy
@@ -38,8 +52,8 @@ class OffersController < ApplicationController
   end
 
   def status
-    @offer = Offer.find_by(listing_id: params[:listing_id])
-    raise
+    # @offer = Offer.find_by(listing_id: params[:listing_id])
+    # @offer.update_attribute(:status, true)
   end
 
   def user_index
